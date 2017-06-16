@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalController , NavController } from 'ionic-angular';
-import { DetailPage } from '../detail/detail';
-import { AddPage } from '../add/add';
+import {NavController, AlertController } from 'ionic-angular';
+import { reorderArray } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -9,34 +8,71 @@ import { AddPage } from '../add/add';
 })
 export class HomePage {
 
- public items = [];
+ items: any = [];
 
-  constructor(public navCtrl: NavController , public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController ,  public alertCtrl: AlertController) {
 }
 
+
 add(){
+let prompt = this.alertCtrl.create({
+    title: 'Add ',
+    inputs: [{
+        name: 'list'
+    }],
+    buttons: [
+        {
+            text: 'Cancel'
+        },
+        {
+            text: 'Add',
+            handler: data => {
+                this.items.push(data);
+            }
+        }
+    ]
+});
 
-    let addModal = this.modalCtrl.create(AddPage);
+prompt.present();    }
 
-    addModal.onDidDismiss((item) => {
+    edit(item){
 
-          if(item){
-            this.save(item);
-          }
+        let prompt = this.alertCtrl.create({
+            title: 'Edit list',
+            inputs: [{
+                name: 'list'
+            }],
+            buttons: [
+                {
+                    text: 'Cancel'
+                },
+                {
+                    text: 'Save',
+                    handler: data => {
+                        let index = this.items.indexOf(item);
 
-    });
+                        if(index > -1){
+                          this.items[index] = data;
+                        }
+                    }
+                }
+            ]
+        });
 
-    addModal.present();
+        prompt.present();
 
-  }
+    }
 
-  save(item){
-    this.items.push(item);
-  }
+    delete(item){
 
-  view(item){
-   this.navCtrl.push(DetailPage, {
-     item: item
-   });
- }
+        let index = this.items.indexOf(item);
+
+        if(index > -1){
+            this.items.splice(index, 1);
+        }
+    }
+
+    reorderItems(index) {
+   this.items = reorderArray(this.items, index);
+}
 }

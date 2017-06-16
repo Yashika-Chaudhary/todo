@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule,  ErrorHandler } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AddPage } from '../pages/add/add';
+
 import { DetailPage } from '../pages/detail/detail';
 
 
@@ -14,7 +14,7 @@ import { DetailPage } from '../pages/detail/detail';
   declarations: [
     MyApp,
     HomePage,
-    AddPage,
+
     DetailPage
   ],
   imports: [
@@ -25,14 +25,16 @@ import { DetailPage } from '../pages/detail/detail';
   entryComponents: [
     MyApp,
     HomePage,
-    AddPage,
+
     DetailPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
+
   ]
 })
 export class AppModule {}

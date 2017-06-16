@@ -11,7 +11,7 @@ export class DetailPage {
 
 list;
 
-  constructor( public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
