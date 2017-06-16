@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController , NavController } from 'ionic-angular';
+import { DetailPage } from '../detail/detail';
+import { AddPage } from '../add/add';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +9,34 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+ public items = [];
+
+  constructor(public navCtrl: NavController , public modalCtrl: ModalController) {
+}
+
+add(){
+
+    let addModal = this.modalCtrl.create(AddPage);
+
+    addModal.onDidDismiss((item) => {
+
+          if(item){
+            this.save(item);
+          }
+
+    });
+
+    addModal.present();
 
   }
 
+  save(item){
+    this.items.push(item);
+  }
+
+  view(item){
+   this.navCtrl.push(DetailPage, {
+     item: item
+   });
+ }
 }
