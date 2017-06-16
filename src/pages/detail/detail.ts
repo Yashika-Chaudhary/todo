@@ -9,11 +9,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+list;
+
+  constructor( public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailPage');
+    this.list = this.navParams.get('item').list;
   }
 
 }

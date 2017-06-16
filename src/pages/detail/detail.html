@@ -1,12 +1,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detail</ion-title>
+    <ion-title>{{list}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- <h1> The Detail Page </h1>
+    <ion-list>
+
+      <ion-item>
+        <ion-label>completed</ion-label>
+        <ion-checkbox [(ngModel)]="completed"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>prospone</ion-label>
+        <ion-checkbox [(ngModel)]="prospone"></ion-checkbox>
+      </ion-item>
+  </ion-list>
 </ion-content>
