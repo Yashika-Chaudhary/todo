@@ -14,7 +14,7 @@
      <h3>Things To Do</h3>
      <ion-list  reorder="true" (ionItemReorder)="$event.applyTo(items)" >
 
-      <ion-item-sliding *ngFor="let item of items ">
+      <ion-item-sliding *ngFor="let item of items"(click)="viewItem(item)">
                   <ion-item>
                  {{item.list}}
                   </ion-item>

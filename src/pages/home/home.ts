@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, AlertController } from 'ionic-angular';
 import { reorderArray } from 'ionic-angular';
+import { DetailPage } from '../detail/detail';
 
 @Component({
   selector: 'page-home',
@@ -71,6 +72,12 @@ prompt.present();    }
             this.items.splice(index, 1);
         }
     }
+
+    viewItem(item){
+  this.navCtrl.push(DetailPage, {
+    item: item
+  });
+}
 
     reorderItems(index) {
    this.items = reorderArray(this.items, index);

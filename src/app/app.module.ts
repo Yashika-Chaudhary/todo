@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+import { AddPage } from '../pages/add/add';
 import { DetailPage } from '../pages/detail/detail';
 
 
@@ -14,7 +14,7 @@ import { DetailPage } from '../pages/detail/detail';
   declarations: [
     MyApp,
     HomePage,
-
+    AddPage,
     DetailPage
   ],
   imports: [
@@ -25,7 +25,7 @@ import { DetailPage } from '../pages/detail/detail';
   entryComponents: [
     MyApp,
     HomePage,
-
+    AddPage,
     DetailPage
 
   ],
