@@ -10,7 +10,9 @@ export class AddPage {
 
 Description;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController)
+  {
+
   }
   saveItem(){
 

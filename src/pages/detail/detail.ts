@@ -13,7 +13,8 @@ export class DetailPage {
 public items = [];
 list;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public modalCtrl: ModalController  ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public modalCtrl: ModalController )
+  {
   }
 
   ionViewDidLoad() {
