@@ -6,8 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
-
 import { MyApp } from './app.component';
+import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { AddPage } from '../pages/add/add';
 import { DetailPage } from '../pages/detail/detail';
@@ -19,7 +19,8 @@ import { Data } from '../providers/data/data';
     MyApp,
     HomePage,
     AddPage,
-    DetailPage
+    DetailPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { Data } from '../providers/data/data';
     MyApp,
     HomePage,
     AddPage,
-    DetailPage
+    DetailPage,
+    TabsPage
 
   ],
   providers: [

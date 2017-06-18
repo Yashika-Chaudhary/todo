@@ -14,7 +14,8 @@
      <h3>Things To Do</h3>
 
 <ion-tabs>
-      <ion-tab [root]="tab1Root" tabTitle="DetailPage"></ion-tab>
+      <ion-tab [root]="tab1Root" tabTitle="HomePage"></ion-tab>
+      <ion-tab [root]="tab2Root" tabTitle="DetailPage"></ion-tab>
 </ion-tabs>
      <ion-list  reorder="true" (ionItemReorder)="$event.applyTo(items)" >
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
