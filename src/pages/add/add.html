@@ -19,7 +19,14 @@
           <ion-input type="text" [(ngModel)]="Description"></ion-input>
         </ion-item>
 
-     </ion-list>
+        <ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime displayFormat="MM/YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="myDate"></ion-datetime>
+</ion-item>
+
+
 
        <button full ion-button color="secondary" (click)="saveItem()">Save</button>
+
+   </ion-list>
 </ion-content>

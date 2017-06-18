@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import {NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { reorderArray } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import { Data } from '../../providers/data/data';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+    tab1Root: any = 'DetailPage';
+
 
  items: any = [];
 
@@ -88,12 +92,25 @@ prompt.present();    }
   this.dataService.save(this.items);
 
 
-
 }
+
 
     reorderItems(index) {
    this.items = reorderArray(this.items, index);
 }
 
+getItems(ev: any) {
+
+    
+
+    let val = ev.target.value;
+
+
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+         return (item.list.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
 
 }
