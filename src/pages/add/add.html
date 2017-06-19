@@ -1,11 +1,20 @@
 <ion-header>
     <ion-toolbar color="secondary">
-        <ion-title>
-          Add Item
-        </ion-title>
+
+   <ion-title>
+         {{ viewTitle }}
+       </ion-title>
+       <ion-buttons end>
+         <button ion-button icon-only (click)="addEvent()">
+           <ion-icon name="add"></ion-icon>
+         </button>
+       </ion-buttons>
           <ion-buttons end>
             <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
           </ion-buttons>
+
+
+
         </ion-toolbar>
 
 </ion-header>
@@ -20,9 +29,9 @@
         </ion-item>
 
         <ion-item>
-  <ion-label>Date</ion-label>
-  <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="myDate"></ion-datetime>
-</ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="Date"></ion-datetime>
+        </ion-item>
 
 
 

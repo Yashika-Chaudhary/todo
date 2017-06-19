@@ -10,8 +10,7 @@ import { Data } from '../../providers/data/data';
   templateUrl: 'home.html'
 })
 export class HomePage {
-    tab1Root: any = 'HomePage';
-    tab2Root: any = 'DetailPage';
+
 
 
  items: any = [];
@@ -101,7 +100,7 @@ prompt.present();    }
 
 getItems(ev: any) {
 
-
+   
 
     let val = ev.target.value;
 
@@ -112,5 +111,4 @@ getItems(ev: any) {
       })
     }
   }
-
 }
