@@ -1,119 +1,116 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { reorderArray } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
+import { AddPage } from '../add/add';
 import { Data } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
 
 
 
- items: any = [];
- itemsCopy: any = [];
+    items: any = [];
+    itemsCopy: any = [];
 
-  constructor(public navCtrl: NavController ,  public alertCtrl: AlertController , public dataService: Data ) {
-  this.dataService.getData().then((list) => {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public dataService: Data) {
+        this.dataService.getData().then((list) => {
 
-   if(list){
-     this.items = JSON.parse(list);
-     this.itemsCopy = this.items;
-   }
-
-  });
-}
-
-
-add(){
-let prompt = this.alertCtrl.create({
-    title: 'Add ',
-    inputs: [{
-        name: 'list'
-    }],
-    buttons: [
-        {
-            text: 'Cancel'
-        },
-        {
-            text: 'Add',
-            handler: data => {
-                this.items.push(data);
+            if (list) {
+                this.items = JSON.parse(list);
+                this.itemsCopy = this.items;
             }
-        }
-    ]
-});
 
-prompt.present();    }
+        });
+    }
 
-    edit(item){
 
-        let prompt = this.alertCtrl.create({
-            title: 'Edit list',
-            inputs: [{
-                name: 'list'
-            }],
-            buttons: [
-                {
-                    text: 'Cancel'
-                },
-                {
-                    text: 'Save',
-                    handler: data => {
-                        let index = this.items.indexOf(item);
+    edit(item) {
 
-                        if(index > -1){
-                          this.items[index] = data;
-                        }
-                    }
-                }
-            ]
+        let editModal = this.modalCtrl.create(AddPage, { 'item': item });
+
+        editModal.onDidDismiss((newItem) => {
+
+            let index = this.items.indexOf(item);
+
+            if (newItem) {
+                this.items[index] = newItem;
+            }
+
         });
 
-        prompt.present();
+        editModal.present();
 
     }
 
-    delete(item){
+    delete(item) {
 
         let index = this.items.indexOf(item);
 
-        if(index > -1){
+        if (index > -1) {
             this.items.splice(index, 1);
         }
     }
 
-    viewItem(item){
-  this.navCtrl.push(DetailPage, {
-    item: item
-  });
-  this.dataService.save(this.items);
+    addItem() {
+
+        let addModal = this.modalCtrl.create(AddPage);
+
+        addModal.onDidDismiss((item) => {
 
 
-}
+            if (item) {
+                this.saveItem(item);
+            }
+
+        });
+
+        addModal.present();
+
+    }
+
+    saveItem(item) {
+
+
+        this.items.push(item);
+        this.dataService.save(this.items);
+    }
+
+
+    viewItem(item) {
+        this.navCtrl.push(DetailPage, {
+            item: item
+        });
+        this.dataService.save(this.items);
+
+
+    }
 
 
     reorderItems(index) {
-   this.items = reorderArray(this.items, index);
-}
-onClear() {
- this.items = this.itemsCopy;
-}
-
-getItems(ev: any) {
-
-    this.onClear();  
-
-    let val = ev.target.value;
-
-
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-         return (item.list.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+        this.items = reorderArray(this.items, index);
     }
-  }
+
+    onClear() {
+        this.items = this.itemsCopy;
+    }
+
+    getItems(ev: any) {
+
+        this.onClear();
+
+        let val = ev.target.value;
+
+
+        if (val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+                return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            })
+        }
+    }
 }

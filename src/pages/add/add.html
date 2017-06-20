@@ -1,23 +1,23 @@
 <ion-header>
     <ion-toolbar color="secondary">
 
-   <ion-title>
-         Add item
-       </ion-title>
-       <ion-buttons end>
-                   <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-                   <button ion-button (click)="changeMode('month')">M</button>
-                   <button ion-button (click)="changeMode('week')">W</button>
-                   <button ion-button (click)="changeMode('day')">D</button>
-                   <button ion-button (click)="loadEvents()">Load Events</button>
-               </ion-buttons>
-          <ion-buttons end>
+        <ion-title>
+            Add item
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+            <button ion-button (click)="changeMode('month')">M</button>
+            <button ion-button (click)="changeMode('week')">W</button>
+            <button ion-button (click)="changeMode('day')">D</button>
+            <button ion-button (click)="loadEvents()">Load Events</button>
+        </ion-buttons>
+        <ion-buttons end>
             <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
-          </ion-buttons>
+        </ion-buttons>
 
 
 
-        </ion-toolbar>
+    </ion-toolbar>
 
 </ion-header>
 
@@ -26,8 +26,13 @@
     <ion-list>
 
         <ion-item>
-          <ion-label floating>Description</ion-label>
-          <ion-input type="text" [(ngModel)]="Description"></ion-input>
+            <ion-label floating>title</ion-label>
+            <ion-input type="text" [(ngModel)]="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-input type="text" [(ngModel)]="Description"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -35,18 +40,14 @@
             <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="Date"></ion-datetime>
         </ion-item>
 
-        <calendar [eventSource]="eventSource"
-                      [currentDate]="calendar.currentDate"
-                      (onCurrentDateChanged)="onCurrentDateChanged($event)"
-                      (onEventSelected)="onEventSelected($event)"
-                      (onTitleChanged)="onViewTitleChanged($event)"
-                      (onTimeSelected)="onTimeSelected($event)"
-                      step="30">
-            </calendar>
+        <calendar [eventSource]="eventSource" [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)"
+            (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)"
+            step="30">
+        </calendar>
 
 
 
-       <button full ion-button color="secondary" (click)="saveItem()">Save</button>
+        <button full ion-button color="secondary" (click)="saveItem()">Save</button>
 
-   </ion-list>
+    </ion-list>
 </ion-content>
