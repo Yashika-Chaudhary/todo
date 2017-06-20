@@ -14,12 +14,14 @@ export class HomePage {
 
 
  items: any = [];
+ itemsCopy: any = [];
 
   constructor(public navCtrl: NavController ,  public alertCtrl: AlertController , public dataService: Data ) {
   this.dataService.getData().then((list) => {
 
    if(list){
      this.items = JSON.parse(list);
+     this.itemsCopy = this.items;
    }
 
   });
@@ -97,10 +99,13 @@ prompt.present();    }
     reorderItems(index) {
    this.items = reorderArray(this.items, index);
 }
+onClear() {
+ this.items = this.itemsCopy;
+}
 
 getItems(ev: any) {
 
-   
+    this.onClear();  
 
     let val = ev.target.value;
 

@@ -15,7 +15,7 @@
 
 
      <ion-list  reorder="true" (ionItemReorder)="$event.applyTo(items)" >
-         <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+         <ion-searchbar (ionInput)="getItems($event)" (onClear)="onClear()" (onCancel)="onClear()"></ion-searchbar>
 
       <ion-item-sliding *ngFor="let item of items"(click)="viewItem(item)">
                   <ion-item>

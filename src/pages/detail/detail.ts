@@ -21,6 +21,7 @@ list;
   }
 
   ionViewDidLoad() {
+
   }
   addItem(){
 
