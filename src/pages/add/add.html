@@ -7,9 +7,6 @@
         <ion-buttons end>
             <button ion-button [disabled]="isToday" (click)="today()">Today</button>
             <button ion-button (click)="changeMode('month')">M</button>
-            <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button>
-            <button ion-button (click)="loadEvents()">Load Events</button>
         </ion-buttons>
         <ion-buttons end>
             <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
@@ -24,7 +21,6 @@
 
 <ion-content padding>
     <ion-list>
-
         <ion-item>
             <ion-label floating>title</ion-label>
             <ion-input type="text" [(ngModel)]="title"></ion-input>

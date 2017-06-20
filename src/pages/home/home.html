@@ -18,8 +18,14 @@
     <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
 
         <ion-item-sliding *ngFor="let item of items" (click)="viewItem(item)">
+
+
             <ion-item>
+               
                 {{item.title}}
+                 <ion-thumbnail item-start>
+                <img [src]= "'assets/img/' + item.title + '.png'">
+            </ion-thumbnail>
             </ion-item>
             <ion-item-options side="left">
 
