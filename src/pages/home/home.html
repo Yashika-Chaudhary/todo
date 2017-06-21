@@ -7,6 +7,17 @@
             <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
+
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="todo" color="primary">
+            <ion-segment-button value="Home">
+                <ion-icon name="home"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="Detail">
+                <ion-icon name="information-circle"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
@@ -15,29 +26,60 @@
 
     <ion-searchbar (ionInput)="getItems($event)" (onClear)="onClear()" (onCancel)="onClear()"></ion-searchbar>
 
-    <ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+    <div [ngSwitch]="todo">
+        <ion-list reorder="true" (ionItemReorder)="reorderItems($event)" *ngSwitchCase="'Home'">
 
-        <ion-item-sliding *ngFor="let item of items" (click)="viewItem(item)">
+            <ion-item-sliding *ngFor="let item of items" (click)="viewItem(item)">
 
 
-            <ion-item>
-               
-                {{item.title}}
-                 <ion-thumbnail item-start>
-                <img [src]= "'assets/img/' + item.title + '.png'">
-            </ion-thumbnail>
-            </ion-item>
-            <ion-item-options side="left">
+                <ion-item>
 
-                <button (click)="edit(item)" light>
+                    {{item.title}}
+                    <ion-thumbnail item-start>
+                        <img [src]="'assets/img/' + item.title + '.png'">
+                    </ion-thumbnail>
+                </ion-item>
+                <ion-item-options side="left">
+
+                    <button (click)="edit(item)" light>
                          <ion-icon name="paper"></ion-icon>
                      </button>
-                <button ion-button icon-only (click)="delete(item)" danger>
+                    <button ion-button icon-only (click)="delete(item)" danger>
                          <ion-icon name="trash"></ion-icon>
                      </button>
-            </ion-item-options>
+                </ion-item-options>
 
-        </ion-item-sliding>
+            </ion-item-sliding>
 
-    </ion-list>
+        </ion-list>
+
+          <ion-list reorder="true" (ionItemReorder)="reorderItems($event)" *ngSwitchCase="'Detail'">
+
+            <ion-item-sliding *ngFor="let item of items" (click)="viewItem(item)">
+
+
+                <ion-item>
+
+                     {{item.title}}
+                    <p> {{item.Description}}</p>
+                    <p> {{item.Date}}</p>
+                     <p>  {{item.DateTime}}</p>
+                    <ion-thumbnail item-start>
+                        <img [src]="'assets/img/' + item.title + '.png'">
+                    </ion-thumbnail>
+                </ion-item>
+                <ion-item-options side="left">
+
+                    <button (click)="edit(item)" light>
+                         <ion-icon name="paper"></ion-icon>
+                     </button>
+                    <button ion-button icon-only (click)="delete(item)" danger>
+                         <ion-icon name="trash"></ion-icon>
+                     </button>
+                </ion-item-options>
+
+            </ion-item-sliding>
+
+        </ion-list>
+    </div>
 </ion-content>

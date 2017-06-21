@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController, ModalController, AlertController } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
 
 
 
@@ -14,6 +15,7 @@ export class AddPage {
     Description;
     Date;
     DateTime;
+    imageURL;
     eventSource;
     viewTitle;
     isToday: boolean;
@@ -22,7 +24,7 @@ export class AddPage {
         currentDate: new Date()
     };
 
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public view: ViewController, public modalCtrl: ModalController) {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public view: ViewController, public modalCtrl: ModalController, private camera: Camera) {
         let item = navParams.get('item');
         if (item) {
             this.title = item.title;
@@ -84,5 +86,12 @@ export class AddPage {
         return date < current;
     };
 
+    takePhoto() {
+        this.camera.getPicture().then((imageData) => {
+            this.imageURL = imageData
+        }, (err) => {
+            console.log(err);
+        });
+    }
 
 }

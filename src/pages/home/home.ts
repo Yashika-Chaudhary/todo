@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { reorderArray } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import { AddPage } from '../add/add';
 import { Data } from '../../providers/data/data';
 
-@IonicPage()
+@IonicPage({
+     name: 'list'
+})
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -14,11 +16,11 @@ import { Data } from '../../providers/data/data';
 export class HomePage {
 
 
-
+    todo = 'Detail';
     items: any = [];
     itemsCopy: any = [];
 
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public dataService: Data) {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public dataService: Data,  public navParams: NavParams) {
         this.dataService.getData().then((list) => {
 
             if (list) {
@@ -27,8 +29,9 @@ export class HomePage {
             }
 
         });
-    }
 
+    }
+  
 
     edit(item) {
 
@@ -113,4 +116,6 @@ export class HomePage {
             })
         }
     }
+
+  
 }
