@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class Data {
+export class DataService{
 
   constructor(public storage: Storage){
 
@@ -13,9 +13,15 @@ export class Data {
     return this.storage.get('list');
   }
 
-  save(data){
-    let newData = JSON.stringify(data);
-    this.storage.set('list', newData);
+  createToDoItem(title, desc) {
+    return {
+      'title':title,
+      'description':desc
+    }
   }
 
+  save(data) {
+    let newData = JSON.stringify(data);
+    return this.storage.set('list', newData);
+  }
 }

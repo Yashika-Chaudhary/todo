@@ -23,8 +23,15 @@ export class AddPage {
         mode: 'month',
         currentDate: new Date()
     };
+    addedToDoObj;
 
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public view: ViewController, public modalCtrl: ModalController, private camera: Camera) {
+    constructor(public navCtrl: NavController,
+        public alertCtrl: AlertController,
+        public navParams: NavParams, 
+        public view: ViewController,
+        public modalCtrl: ModalController,
+        private camera: Camera) {
+
         let item = navParams.get('item');
         if (item) {
             this.title = item.title;
@@ -33,8 +40,10 @@ export class AddPage {
             this.DateTime = item.DateTime;
         }
     }
+
     saveItem() {
 
+   
 
         let newItem = {
             title: this.title,
@@ -45,7 +54,7 @@ export class AddPage {
 
         this.view.dismiss(newItem);
     }
-
+    
     close() {
         this.view.dismiss();
     }

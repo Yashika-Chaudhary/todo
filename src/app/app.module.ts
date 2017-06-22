@@ -12,7 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { AddPage } from '../pages/add/add';
 import { DetailPage } from '../pages/detail/detail';
-import { Data } from '../providers/data/data';
+import { DataService } from '../providers/data/data';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { Data } from '../providers/data/data';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Data,
+    DataService,
     Camera,
 
 

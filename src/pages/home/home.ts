@@ -4,11 +4,9 @@ import { ModalController } from 'ionic-angular';
 import { reorderArray } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import { AddPage } from '../add/add';
-import { Data } from '../../providers/data/data';
+import { DataService } from '../../providers/data/data';
 
-@IonicPage({
-     name: 'list'
-})
+@IonicPage()
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -16,11 +14,18 @@ import { Data } from '../../providers/data/data';
 export class HomePage {
 
 
-    todo = 'Detail';
+
     items: any = [];
     itemsCopy: any = [];
+    counter = 0;
 
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public dataService: Data,  public navParams: NavParams) {
+    constructor(public navCtrl: NavController,
+        public alertCtrl: AlertController,
+        public modalCtrl: ModalController,
+        public dataService: DataService,
+        public navParams: NavParams) {
+
+
         this.dataService.getData().then((list) => {
 
             if (list) {
@@ -31,7 +36,10 @@ export class HomePage {
         });
 
     }
-  
+
+
+
+
 
     edit(item) {
 
@@ -80,16 +88,20 @@ export class HomePage {
     saveItem(item) {
 
 
-        this.items.push(item);
-        this.dataService.save(this.items);
+            this.items.push(item);
+            this.dataService.save(this.items);
+
     }
 
 
+
     viewItem(item) {
+
+
         this.navCtrl.push(DetailPage, {
             item: item
         });
-        this.dataService.save(this.items);
+
 
 
     }
@@ -117,5 +129,26 @@ export class HomePage {
         }
     }
 
-  
+    doInfinite(infiniteScroll) {
+        
+while(this.counter <= 10)
+        {
+        console.log('Begin async operation');
+
+        setTimeout(() => {
+            for (var i = 0; i <10; i++) {
+
+                this.items.push(this.dataService.createToDoItem('TODO-'+i,'TODOdesc-'+i));
+
+
+
+            console.log('Async operation has ended');
+            infiniteScroll.complete();
+            infiniteScroll.enable(false);
+            }
+        }, 500);
+
+    this.counter += 1;
+    }
+}
 }
